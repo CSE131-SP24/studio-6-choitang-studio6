@@ -1,5 +1,6 @@
 package studio6;
 
+import java.util.Arrays;
 import edu.princeton.cs.introcs.StdDraw;
 
 public class RecursiveMethods {
@@ -13,8 +14,12 @@ public class RecursiveMethods {
 	 */
 	public static double geometricSum(int n) {
 		
-			// FIXME compute the geometric sum for the first n terms recursively
+		if(n==0){
 			return 0;
+		}
+		
+		
+		return Math.pow(0.5, n) + geometricSum(n-1);
 		
 	}
 
@@ -28,8 +33,10 @@ public class RecursiveMethods {
 	 */
 	public static int gcd(int p, int q) {
 		
-			// FIXME compute the gcd of p and q using recursion
-			return 0;
+		if(p % q == 0)
+			return q;
+		
+		return gcd(q, p % q);
 		
 	}
 
@@ -42,9 +49,22 @@ public class RecursiveMethods {
 	 * @return an array with the same data as the input but it reverse order
 	 */
 	public static int[] toReversed(int[] array) {
+		int[] copy = Arrays.copyOf(array, array.length);
+		return reversedhelper(copy, 0, array.length - 1);
+	}
+	
+	public static int[] reversedhelper(int[] array, int start, int end) {
 		
-			// FIXME create a helper method that can recursively reverse the given array
-			return new int[0];
+		if(start > end)
+			return array;
+		
+		
+		int temp = array[start];
+		array[start] = array[end];
+		array[end] = temp;
+		
+		return reversedhelper(array, start + 1, end - 1);
+				
 		
 	}
 
@@ -59,6 +79,7 @@ public class RecursiveMethods {
 	 */
 	public static void circlesUponCircles(double xCenter, double yCenter, double radius,
 			double radiusMinimumDrawingThreshold) {
+		
 		
 		// FIXME
 	}
